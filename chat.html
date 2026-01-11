@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>girls. | Чат</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header></header>
+
+    <main style="padding-top: 150px;">
+        <section class="container animate-on-scroll">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <div style="margin-bottom: 20px;">
+                    <img src="img/participants/gift_girls_winter.png" alt="Gift Girls Winter"
+                        style="width: 250px; height: 250px; border-radius: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); object-fit: cover;">
+                </div>
+                <h1 style="font-size: 48px; font-weight: 800; margin-bottom: 20px;">Чат girls</h1>
+                <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 40px;">
+                    Наше уютное пространство для общения 24/7. Здесь вы найдете новых друзей, поддержку и просто
+                    приятную компанию. Мы ценим дружелюбную атмосферу и взаимоуважение.
+                </p>
+                <a href="https://t.me/meowwgirlssz" class="btn btn-primary"
+                    style="padding: 20px 60px; font-size: 20px;">Вступить в чат</a>
+
+                <div class="chat-demo animate-on-scroll">
+                    <div class="chat-bg-pattern"></div>
+
+                    <div class="chat-header">
+                        <img src="img/participants/chat_header_avatar.png" class="chat-header-avatar" alt="">
+                        <div class="chat-info">
+                            <h4>girls. community</h4>
+                            <div class="chat-status">1,248 участников, 156 в сети</div>
+                        </div>
+                    </div>
+
+                    <div class="chat-messages">
+                        <div class="tg-msg-wrapper"
+                            style="animation: msgPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both; animation-delay: 0.5s;">
+                            <img src="img/participants/waiting.png" class="tg-avatar" alt="">
+                            <div class="tg-bubble left">
+                                <span class="tg-author pink">waiting</span>
+                                Всем привет! 👋 Как настроение?
+                            </div>
+                        </div>
+
+                        <div class="tg-msg-wrapper right"
+                            style="animation: msgPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both; animation-delay: 1.5s;">
+                            <img src="img/participants/latency.png" class="tg-avatar" alt="">
+                            <div class="tg-bubble right">
+                                <span class="tg-author blue">latency</span>
+                                Привет! На чилле, обсуждаем новые подарки 🎁
+                            </div>
+                        </div>
+
+                        <div class="tg-msg-wrapper"
+                            style="animation: msgPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both; animation-delay: 2.5s;">
+                            <img src="img/participants/ikronez.png" class="tg-avatar" alt="">
+                            <div class="tg-bubble left">
+                                <span class="tg-author pink">ikronez</span>
+                                Тут очень атмосферно, заходите скорее ✨
+                            </div>
+                        </div>
+
+                        <div class="tg-msg-wrapper"
+                            style="animation: msgPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both; animation-delay: 3.5s;">
+                            <div class="tg-avatar"
+                                style="background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: 800;">
+                                G</div>
+                            <div class="tg-bubble left accent">
+                                Админ: Новичкам добро пожаловать! Читайте правила в закрепе ❤️
+                            </div>
+                        </div>
+
+                        <div class="typing-indicator" id="typing">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 100px;">
+                <h2 style="text-align: center; margin-bottom: 40px;">Атмосфера чата</h2>
+                <div class="grid">
+                    <div class="card glass" style="text-align: center;">
+                        <div style="font-size: 40px; margin-bottom: 15px;">🤝</div>
+                        <h3>Поддержка</h3>
+                        <p style="font-size: 14px; color: var(--text-muted);">Мы всегда готовы выслушать и помочь
+                            советом.</p>
+                    </div>
+                    <div class="card glass" style="text-align: center;">
+                        <div style="font-size: 40px; margin-bottom: 15px;">🎉</div>
+                        <h3>Ивенты</h3>
+                        <p style="font-size: 14px; color: var(--text-muted);">Регулярные обсуждения и совместные игры.
+                        </p>
+                    </div>
+                    <div class="card glass" style="text-align: center;">
+                        <div style="font-size: 40px; margin-bottom: 15px;">🔒</div>
+                        <h3>Безопасность</h3>
+                        <p style="font-size: 14px; color: var(--text-muted);">Активная модерация следит за порядком.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        injectComponents('chat');
+    </script>
+</body>
+
+</html>
