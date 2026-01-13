@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>girls. | Рулетка</title>
+    <link rel="stylesheet" href="css/style.css?v=3">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/mobile-enhancements.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header></header>
+
+    <main style="padding-top: 150px; padding-bottom: 80px;">
+        <section class="container">
+            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+
+                <h1 class="hero-title" style="font-size: 56px; margin-bottom: 10px;">Рулетка участников</h1>
+                <p class="hero-subtitle" style="margin: 0 auto 50px; border-left: none; padding-left: 0;">
+                    Испытай удачу! Нажми кнопку и узнай, кто выиграет
+                </p>
+
+                <!-- Roulette Container -->
+                <div class="roulette-container glass">
+
+                    <!-- Animation Warning Overlay -->
+                    <div id="rouletteWarningOverlay" class="chat-warning-overlay" style="border-radius: 24px;">
+                        <div class="chat-warning-content">
+                            <!-- Warning Icon -->
+                            <div class="warning-triangle">
+                                <svg viewBox="0 0 100 100" class="triangle-svg">
+                                    <polygon points="50,10 90,85 10,85" fill="url(#triangleGradient)" />
+                                    <defs>
+                                        <linearGradient id="triangleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#ff4444;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#cc0000;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <span class="exclamation-mark">!</span>
+                            </div>
+
+                            <!-- Warning Message -->
+                            <h2 class="warning-title">Анимации отключены</h2>
+                            <p class="warning-message">Рулетка не работает с выключенными анимациями.<br>Пожалуйста,
+                                включите их.</p>
+
+                            <!-- Inline Animation Toggle -->
+                            <div class="warning-toggle-wrapper">
+                                <span class="warning-toggle-label">Анимации</span>
+                                <label class="warning-switch">
+                                    <input type="checkbox" id="rouletteAnimToggle">
+                                    <span class="warning-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Info Modal -->
+                    <div id="infoModal" class="info-modal-overlay">
+                        <div class="info-modal-content glass">
+                            <button id="closeInfoBtn" class="close-info-btn">×</button>
+                            <h2 class="info-title">О Рулетке</h2>
+                            <div class="info-description">
+                                <p style="margin-bottom: 15px; font-weight: 600;">Рулетка создана, чтобы радовать
+                                    участников! ✨</p>
+
+                                <h4 style="color: white; margin-bottom: 8px; font-family: 'Montserrat', sans-serif;">В
+                                    чем заключается суть рулетки?</h4>
+                                <p style="margin-bottom: 15px;">Вы крутите барабан, вам выпадает участник и его приз.
+                                    После этого, если захотите, вы можете подарить этот приз ему.</p>
+
+                                <div
+                                    style="background: rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 10px; border-left: 3px solid #0088cc; text-align: left;">
+                                    <p style="margin: 0; font-size: 13px;">Если вам выпал <span
+                                            style="color: #0088cc; font-weight: 700;">TON</span>, вы можете подарить его
+                                        либо в виде NFT, либо напрямую на кошелёк.</p>
+                                </div>
+                            </div>
+
+                            <h3 class="info-subtitle">Призы и шансы</h3>
+                            <div class="prizes-list" id="prizesList">
+                                <!-- Prizes will be injected here via JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Roulette Display -->
+                    <div class="roulette-display">
+                        <!-- Selection Indicator (центральная полоска) -->
+                        <div class="roulette-indicator"></div>
+
+                        <!-- Scrolling Items Container -->
+                        <div class="roulette-wheel" id="rouletteWheel">
+                            <!-- Items будут добавлены через JS -->
+                        </div>
+                    </div>
+
+                    <!-- Spin Button with Hint -->
+                    <div style="text-align: center; margin-bottom: 30px; position: relative; z-index: 10;">
+                        <div class="spin-hint"
+                            style="font-family: 'Montserrat', sans-serif; font-size: 12px; color: rgba(255, 255, 255, 0.5); margin-bottom: 10px; opacity: 0; transition: opacity 0.3s;"
+                            id="spinHint">
+                            Нажми 2 раза для пропуска анимации
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 15px;">
+                            <button class="btn btn-primary roulette-spin-btn" id="spinBtn">
+                                <span class="btn-text"
+                                    style="font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 2px;">КРУТИТЬ
+                                    РУЛЕТКУ</span>
+                            </button>
+                            <button id="infoBtn" class="info-btn-inline" aria-label="Информация">i</button>
+                        </div>
+                    </div>
+
+                    <!-- Winner Display (показывается после остановки) -->
+                    <div class="winner-display" id="winnerDisplay" style="background: rgba(30, 30, 46, 0.98);">
+                        <div class="winner-content">
+                            <h3 class="winner-title">Победитель:</h3>
+                            <div class="winner-card">
+                                <img id="winnerImg" src="" alt="Winner" class="winner-avatar">
+                                <div class="winner-name" id="winnerName"></div>
+                            </div>
+                            <div class="winner-buttons">
+                                <button class="btn btn-outline" id="closeWinnerBtn">Назад к рулетке</button>
+                                <button class="btn btn-primary" id="spinAgainBtn">Крутить ещё раз</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Info Panel -->
+                <div class="roulette-info glass" style="margin-top: 30px; padding: 25px;">
+                    <h3 style="margin-bottom: 15px; color: white;">Всего участников</h3>
+                    <div style="font-size: 48px; font-weight: 800; font-family: 'Playfair Display', serif;"
+                        id="participantCount">0</div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        injectComponents('roulette');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Full Participant List
+            const participants = [
+                { id: 'ikronez', name: 'ikronez', img: 'img/participants/ikronez.png' },
+                { id: 'anora', name: 'anora', img: 'img/participants/anora.png' },
+                { id: 'shamuratov', name: 'shamuratov', img: 'img/participants/shamuratov.png' },
+                { id: 'vetements', name: 'vetements', img: 'img/participants/vetements.png' },
+                { id: 'matvey', name: 'Матвей', img: 'img/participants/matvey.jpg' },
+                { id: 'laysik', name: 'Laysik', img: 'img/participants/laysik.png' },
+                { id: 'tony', name: 'Tony Barelly', img: 'img/participants/tony.png' },
+                { id: 'ikar', name: '𒆜ɨ. ӄ. ǟ. ʀ. 𒆜', img: 'img/participants/ikar.png' },
+                { id: 'ma', name: 'M|A', img: 'img/participants/ma.png' },
+                { id: 'histon', name: 'хистон', img: 'img/participants/histon.jpg' },
+                { id: 'discomfort', name: 'discomfort', img: 'img/participants/discomfort.png' },
+                { id: 's', name: 'S', img: 'img/participants/s.png' },
+                { id: 'imash', name: 'имаш', img: 'img/participants/imash.png' },
+                { id: 'varya', name: 'варя', img: 'img/participants/varya.png' },
+                { id: 'robert', name: 'Роберт Фир', img: 'img/participants/robert.jpg' },
+                { id: 'seldex', name: 'seldex', img: 'img/participants/seldex.png' },
+                { id: 'simpatia', name: 'simpatía ausente', img: 'img/participants/simpatia.png' },
+                { id: '2d', name: '2D', img: 'img/participants/melanmolly.png' },
+                { id: 'evelka', name: 'Evelkka', img: 'img/participants/evelka.png' },
+                { id: 'sonya', name: 'sonechka', img: 'img/participants/sonya.png' },
+                { id: 'yulkk', name: 'yulkk', img: 'img/participants/yulkk.png' },
+                { id: 'hoshiko', name: 'hoshiko', img: 'img/participants/hoshiko.png' },
+                { id: 'ksuukras', name: 'ksuukras', img: 'img/participants/ksuukras.jpg' },
+                { id: 'uainni', name: 'uainni', img: 'img/participants/uainni.png' },
+                { id: 'unlucky', name: 'unlucky', img: 'img/participants/unlucky.png' },
+                { id: 'lina', name: 'lina', img: 'img/participants/lina.png' },
+                { id: 'valeriia', name: 'Valeriia', img: 'img/participants/valeriia.png' },
+                { id: 'nastyusha', name: 'настюша', img: 'img/participants/nastyusha.png' },
+                { id: 'ansty', name: 'ansty', img: 'img/participants/ansty.png' },
+                { id: 'stepashha', name: 'stepashha', img: 'img/participants/stepashha.png' },
+                { id: 'chrwcn', name: 'chrwcn', img: 'img/participants/chrwcn.jpg' },
+                { id: 'dana', name: 'Dana', img: 'img/participants/dana.png' },
+                { id: 'waiting', name: 'waiting', img: 'img/participants/waiting.png' },
+                { id: 'sarra', name: 'sarra', img: 'img/participants/sarra.png' },
+                { id: 'sophie', name: 'sophie', img: 'img/participants/sophie.png' },
+                { id: 'lerochka', name: 'Лерочка', img: 'img/participants/lerochka.png' },
+                { id: 'nagaserena', name: 'NagaSerena', img: 'img/participants/nagaserena.png' },
+                { id: 'ellenachka', name: 'Ellenachka', img: 'img/participants/ellenachka.png' },
+                { id: 'madiii', name: '𝐦𝐚𝐝𝐢𝐢𝐢', img: 'img/participants/madiii.png' },
+                { id: 'minn', name: 'Minni', img: 'img/participants/minn.png' },
+                { id: 'latency', name: 'latency', img: 'img/participants/latency.png' },
+                { id: 'ronin', name: 'ʀᴏɴɪɴ', img: 'img/participants/ronin.png' },
+                { id: 'anastasia', name: 'Анастасия Литвин', img: 'img/participants/anastasia.jpg' },
+                { id: 'mua', name: 'mua', img: 'img/participants/mua.png' },
+                { id: 'marlboro', name: 'marlboro', img: 'img/participants/marlboro.png' },
+                { id: 'hostyan', name: 'хостян', img: 'img/participants/hostyan.png' },
+                { id: 'armen', name: 'Армен', img: 'img/participants/armen.png' },
+                { id: 'velya', name: 'веля', img: 'img/participants/velya.png' },
+                { id: 'spilwy', name: 'spilwy', img: 'img/participants/spilwy.jpg' },
+                { id: 'max_cursed', name: 'макс курсед', img: 'img/participants/max_cursed.png' },
+                { id: 'pivnouy', name: 'pivnouy', img: 'img/participants/pivnouy.png' }
+            ];
+
+            // ========================================
+            // Prize Data & Logic
+            // ========================================
+
+            const prizes = [
+                // Массовые подарки
+                { id: 'heart', name: 'Сердце', cost: '15⭐', percent: 20 },
+                { id: 'bear', name: 'Мишка', cost: '15⭐', percent: 18 },
+                { id: 'gift', name: 'Подарок', cost: '25⭐', percent: 14 },
+                { id: 'rose', name: 'Роза', cost: '25⭐', percent: 12 },
+                { id: 'cake', name: 'Торт', cost: '50⭐', percent: 8 },
+                { id: 'bouquet', name: 'Букет', cost: '50⭐', percent: 6 },
+                { id: 'rocket', name: 'Ракета', cost: '50⭐', percent: 5 },
+                { id: 'champagne', name: 'Шампанское', cost: '50⭐', percent: 4 },
+
+                // Дорогие подарки
+                { id: 'cup', name: 'Кубок', cost: '100⭐', percent: 2.5 },
+                { id: 'ring', name: 'Кольцо', cost: '100⭐', percent: 2 },
+                { id: 'diamond', name: 'Алмаз', cost: '100⭐', percent: 1.5 },
+
+                // Telegram Premium
+                { id: 'premium_3', name: 'Premium 3 месяца', cost: '1000⭐', percent: 0.9 },
+                { id: 'premium_6', name: 'Premium 6 месяцев', cost: '1500⭐', percent: 0.6 },
+                { id: 'premium_12', name: 'Premium 12 месяцев', cost: '2000⭐', percent: 0.4 },
+
+                // NFT (TON)
+                { id: 'ton_5', name: '5 TON', cost: 'TON', percent: 0.7 },
+                { id: 'ton_10', name: '10 TON', cost: 'TON', percent: 0.6 },
+                { id: 'ton_15', name: '15 TON', cost: 'TON', percent: 0.5 },
+                { id: 'ton_20', name: '20 TON', cost: 'TON', percent: 0.4 },
+                { id: 'ton_25', name: '25 TON', cost: 'TON', percent: 0.35 },
+                { id: 'ton_30', name: '30 TON', cost: 'TON', percent: 0.3 },
+                { id: 'ton_35', name: '35 TON', cost: 'TON', percent: 0.25 },
+                { id: 'ton_40', name: '40 TON', cost: 'TON', percent: 0.22 },
+                { id: 'ton_45', name: '45 TON', cost: 'TON', percent: 0.20 },
+                { id: 'ton_50', name: '50 TON', cost: 'TON', percent: 0.18 },
+                { id: 'ton_55', name: '55 TON', cost: 'TON', percent: 0.16 },
+                { id: 'ton_60', name: '60 TON', cost: 'TON', percent: 0.14 },
+                { id: 'ton_65', name: '65 TON', cost: 'TON', percent: 0.12 },
+                { id: 'ton_70', name: '70 TON', cost: 'TON', percent: 0.11 },
+                { id: 'ton_75', name: '75 TON', cost: 'TON', percent: 0.10 },
+                { id: 'ton_80', name: '80 TON', cost: 'TON', percent: 0.09 },
+                { id: 'ton_85', name: '85 TON', cost: 'TON', percent: 0.08 },
+                { id: 'ton_90', name: '90 TON', cost: 'TON', percent: 0.07 },
+                { id: 'ton_95', name: '95 TON', cost: 'TON', percent: 0.06 },
+                { id: 'ton_100', name: '100 TON', cost: 'TON', percent: 0.05 }
+            ];
+
+            // Weighted Random Selection
+            function getRandomPrize() {
+                const totalWeight = prizes.reduce((sum, prize) => sum + prize.percent, 0);
+                let random = Math.random() * totalWeight;
+
+                for (const prize of prizes) {
+                    if (random < prize.percent) {
+                        return prize;
+                    }
+                    random -= prize.percent;
+                }
+
+                return prizes[0]; // Fallback
+            }
+
+            // DOM Elements
+            const wheel = document.getElementById('rouletteWheel');
+            const spinBtn = document.getElementById('spinBtn');
+            const spinAgainBtn = document.getElementById('spinAgainBtn');
+            const closeWinnerBtn = document.getElementById('closeWinnerBtn');
+            const winnerDisplay = document.getElementById('winnerDisplay');
+            const participantCountEl = document.getElementById('participantCount');
+
+            // State
+            let isSpinning = false;
+            let currentTranslate = 0;
+
+            // Update participant count
+            participantCountEl.textContent = participants.length;
+
+            // Create roulette items (многократное повторение для бесшовного скролла)
+            function createRouletteItems() {
+                wheel.innerHTML = '';
+
+                // Создаем items достаточное количество раз для длинной прокрутки
+                // Увеличиваем до 20, чтобы точно не вылететь в пустоту при вращении
+                const repetitions = 20;
+
+                for (let r = 0; r < repetitions; r++) {
+                    participants.forEach(participant => {
+                        const item = document.createElement('div');
+                        item.className = 'roulette-item';
+                        item.innerHTML = `
+                            <img src="${participant.img}" alt="${participant.name}" class="roulette-avatar">
+                            <span class="roulette-name">${participant.name}</span>
+                        `;
+                        wheel.appendChild(item);
+                    });
+                }
+            }
+
+            // Sound Manager (Web Audio API)
+            const soundManager = {
+                ctx: null,
+                init() {
+                    if (!this.ctx) {
+                        this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+                    }
+                },
+                playTick() {
+                    if (!this.ctx) return;
+                    if (this.ctx.state === 'suspended') this.ctx.resume();
+
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+
+                    // Настройка звука "тика" (короткий, высокий щелчок)
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(800, this.ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(1200, this.ctx.currentTime + 0.05);
+
+                    gain.gain.setValueAtTime(0.3, this.ctx.currentTime); // Громкость
+                    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.05);
+
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + 0.1);
+                },
+                playWin() {
+                    if (!this.ctx) return;
+                    if (this.ctx.state === 'suspended') this.ctx.resume();
+
+                    // Простой мажорный аккорд для победы
+                    const notes = [523.25, 659.25, 783.99, 1046.50]; // C E G C
+                    notes.forEach((freq, i) => {
+                        const osc = this.ctx.createOscillator();
+                        const gain = this.ctx.createGain();
+
+                        osc.type = 'sine';
+                        osc.frequency.value = freq;
+
+                        gain.gain.setValueAtTime(0.1, this.ctx.currentTime + i * 0.1);
+                        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + i * 0.1 + 0.5);
+
+                        osc.connect(gain);
+                        gain.connect(this.ctx.destination);
+
+                        osc.start(this.ctx.currentTime + i * 0.1);
+                        osc.stop(this.ctx.currentTime + i * 0.1 + 0.6);
+                    });
+                }
+            };
+
+            // Easing function: cubic-bezier(0.25, 1, 0.5, 1) - быстрое начало, очень плавный конец
+            function easeOutCubic(t) {
+                return 1 - Math.pow(1 - t, 3);
+            }
+
+            // Spin the roulette
+            let animationFrameId = null;
+            let currentWinner = null;
+            let currentPrize = null;
+
+            function spin() {
+                // Если уже крутится и нажали повторно - пропускаем анимацию
+                if (isSpinning) {
+                    skipAnimation();
+                    return;
+                }
+
+                if (spinBtn.disabled && !isSpinning) return;
+
+                // Инициализация звука
+                soundManager.init();
+
+                isSpinning = true;
+                // Не блокируем кнопку полностью, чтобы можно было нажать скип
+                // Но меняем текст или стиль, если нужно. В данном случае просто разрешаем клик.
+                // spinBtn.disabled = true; 
+
+                // Показываем подсказку
+                document.getElementById('spinHint').style.opacity = '1';
+
+                winnerDisplay.classList.remove('active');
+
+                // Победитель
+                const winnerIndex = Math.floor(Math.random() * participants.length);
+                const winner = participants[winnerIndex];
+
+                // Сохраняем в глобальную переменную для функции скипа
+                currentWinner = winner;
+
+                // Dynamic heights for mobile/desktop support
+                const rect = wheel.getBoundingClientRect();
+                const firstItem = wheel.firstElementChild;
+                const itemHeight = firstItem ? firstItem.offsetHeight : (window.innerWidth <= 768 ? 100 : 120);
+                const displayHeight = document.querySelector('.roulette-display').offsetHeight;
+
+                const centerOffset = (displayHeight / 2) - (itemHeight / 2);
+                const middleRepetition = 10;
+                const extraSpins = participants.length * 5;
+
+                // Target position
+                const targetIndex = middleRepetition * participants.length + winnerIndex;
+                const startPosition = 0;
+                const finalPosition = (targetIndex + extraSpins) * itemHeight - centerOffset;
+                const totalDistance = finalPosition - startPosition;
+
+                // Prize
+                const prize = getRandomPrize();
+                currentPrize = prize;
+
+                // Animation
+                const duration = 5000;
+                let startTime = null;
+
+                function step(timestamp) {
+                    if (!isSpinning) return;
+
+                    if (!startTime) startTime = timestamp;
+                    const elapsed = timestamp - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+
+                    const easedProgress = easeOutCubic(progress);
+                    const currentPosition = startPosition + (totalDistance * easedProgress);
+
+                    wheel.style.transform = `translateY(-${currentPosition}px)`;
+
+                    if (progress < 1) {
+                        animationFrameId = requestAnimationFrame(step);
+                    } else {
+                        finishSpin();
+                    }
+                }
+
+                wheel.style.transition = 'none';
+                animationFrameId = requestAnimationFrame(step);
+            }
+
+            function skipAnimation() {
+                if (animationFrameId) cancelAnimationFrame(animationFrameId);
+                finishSpin();
+            }
+
+            function finishSpin() {
+                isSpinning = false;
+                document.getElementById('spinHint').style.opacity = '0';
+
+                // Recalculate based on current state to ensure perfect alignment
+                const firstItem = wheel.firstElementChild;
+                const itemHeight = firstItem ? firstItem.offsetHeight : (window.innerWidth <= 768 ? 100 : 120);
+                const displayHeight = document.querySelector('.roulette-display').offsetHeight;
+                const centerOffset = (displayHeight / 2) - (itemHeight / 2);
+
+                let wIndex = 0;
+                for (let i = 0; i < participants.length; i++) {
+                    if (participants[i].id === currentWinner.id) {
+                        wIndex = i;
+                        break;
+                    }
+                }
+
+                const targetRepetition = 10;
+                const finalPos = (targetRepetition * participants.length + wIndex) * itemHeight - centerOffset;
+
+                wheel.style.transform = `translateY(-${finalPos}px)`;
+                wheel.style.filter = 'none';
+
+                soundManager.playWin();
+                showWinner(currentWinner, currentPrize);
+            }
+
+            // Show winner
+            function showWinner(winner, prize) {
+                document.getElementById('winnerImg').src = winner.img;
+
+                // Формируем текст выигрыша
+                const participantName = winner.name;
+                // Если стоимость TON, не дублируем её в скобках, так как она уже есть в названии
+                const prizeText = prize.cost === 'TON' ? prize.name : `${prize.name} (${prize.cost})`;
+
+                document.getElementById('winnerName').innerHTML = `<span style="color: var(--color-primary);">${participantName}</span><br>${prizeText}`;
+
+                setTimeout(() => {
+                    winnerDisplay.classList.add('active');
+                }, 500);
+            }
+
+            // Reset roulette
+            function reset() {
+                winnerDisplay.classList.remove('active');
+
+                // Reset position instantly
+                wheel.style.transition = 'none';
+                wheel.style.transform = 'translateY(0)';
+
+                // Force reflow
+                void wheel.offsetHeight;
+
+                setTimeout(() => {
+                    wheel.style.transition = '';
+                }, 50);
+            }
+
+            // ========================================
+            // Animation Warning Overlay Logic
+            // ========================================
+
+            const warningOverlay = document.getElementById('rouletteWarningOverlay');
+            const rouletteAnimToggle = document.getElementById('rouletteAnimToggle');
+
+            // Check animation settings and show/hide overlay
+            function checkAnimationSettings() {
+                const savedAnim = localStorage.getItem('site_animations');
+                const isAnimEnabled = savedAnim === null ? true : savedAnim === 'true';
+
+                if (!isAnimEnabled) {
+                    // Animations are disabled - show warning
+                    warningOverlay.classList.add('active');
+                    rouletteAnimToggle.checked = false;
+                    spinBtn.disabled = true; // Disable spin button
+                } else {
+                    // Animations are enabled - hide warning
+                    warningOverlay.classList.remove('active');
+                    rouletteAnimToggle.checked = true;
+                    if (!isSpinning) spinBtn.disabled = false; // Enable if not spinning
+                }
+            }
+
+            // Handle toggle change from warning overlay
+            rouletteAnimToggle.addEventListener('change', (e) => {
+                const enabled = e.target.checked;
+
+                if (enabled) {
+                    // Enable animations
+                    document.body.classList.remove('no-animations');
+                    localStorage.setItem('site_animations', 'true');
+
+                    // Hide warning overlay
+                    setTimeout(() => {
+                        warningOverlay.classList.remove('active');
+                    }, 100);
+
+                    if (!isSpinning) spinBtn.disabled = false;
+                } else {
+                    // Disable animations
+                    document.body.classList.add('no-animations');
+                    localStorage.setItem('site_animations', 'false');
+                    warningOverlay.classList.add('active');
+                    spinBtn.disabled = true;
+                }
+            });
+
+            // Check settings on page load
+            checkAnimationSettings();
+
+            // Listen for changes in localStorage
+            window.addEventListener('storage', (e) => {
+                if (e.key === 'site_animations') {
+                    checkAnimationSettings();
+                }
+            });
+
+            // Periodically check (for sync across tabs)
+            setInterval(checkAnimationSettings, 500);
+
+            // Event Listeners
+            spinBtn.addEventListener('click', spin);
+
+            spinAgainBtn.addEventListener('click', () => {
+                reset();
+                setTimeout(spin, 100);
+            });
+
+            closeWinnerBtn.addEventListener('click', () => {
+                winnerDisplay.classList.remove('active');
+            });
+
+            // Initialize
+            createRouletteItems();
+
+            // ========================================
+            // Info Modal Logic
+            // ========================================
+            const infoBtn = document.getElementById('infoBtn');
+            const infoModal = document.getElementById('infoModal');
+            const closeInfoBtn = document.getElementById('closeInfoBtn');
+            const prizesList = document.getElementById('prizesList');
+
+            // Open Modal
+            infoBtn.addEventListener('click', () => {
+                infoModal.classList.add('active');
+                renderPrizes();
+            });
+
+            // Close Modal
+            closeInfoBtn.addEventListener('click', () => {
+                infoModal.classList.remove('active');
+            });
+
+            // Close on outside click
+            infoModal.addEventListener('click', (e) => {
+                if (e.target === infoModal) {
+                    infoModal.classList.remove('active');
+                }
+            });
+
+            // Render Prizes Dynamically
+            function renderPrizes() {
+                if (prizesList.children.length > 0) return; // Render once
+
+                // Sort prizes by percent (descending) if needed, but keeping user order is often better for categories.
+                // Keeping user order.
+
+                prizes.forEach(prize => {
+                    const item = document.createElement('div');
+                    item.className = 'prize-item';
+                    item.innerHTML = `
+                        <span class="prize-name">${prize.name} (${prize.cost})</span>
+                        <span class="prize-chance">${prize.percent}%</span>
+                    `;
+                    prizesList.appendChild(item);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

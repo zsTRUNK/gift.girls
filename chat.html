@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>girls. | Чат</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/mobile-enhancements.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header></header>
+
+    <main style="padding-top: 150px; padding-bottom: 50px;">
+        <section class="container animate-on-scroll">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+
+                <h1 class="hero-title" style="font-size: 56px; margin-bottom: 10px;">Чат girls.</h1>
+                <p class="hero-subtitle" style="margin: 0 auto 50px; border-left: none; padding-left: 0;">
+                    Присоединяйся к нашему живому общению
+                </p>
+
+                <!-- iOS Glass Chat Container -->
+                <div class="ios-chat-container" style="position: relative;">
+
+                    <!-- Animation Warning Overlay -->
+                    <div id="chatWarningOverlay" class="chat-warning-overlay">
+                        <div class="chat-warning-content">
+                            <!-- Warning Icon -->
+                            <div class="warning-triangle">
+                                <svg viewBox="0 0 100 100" class="triangle-svg">
+                                    <polygon points="50,10 90,85 10,85" fill="url(#triangleGradient)" />
+                                    <defs>
+                                        <linearGradient id="triangleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#ff4444;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#cc0000;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <span class="exclamation-mark">!</span>
+                            </div>
+
+                            <!-- Warning Message -->
+                            <h2 class="warning-title">Анимации отключены</h2>
+                            <p class="warning-message">Чат не работает с выключенными анимациями.<br>Пожалуйста,
+                                включите анимации для продолжения.</p>
+
+                            <!-- Inline Animation Toggle -->
+                            <div class="warning-toggle-wrapper">
+                                <span class="warning-toggle-label">Анимации</span>
+                                <label class="warning-switch">
+                                    <input type="checkbox" id="chatAnimToggle">
+                                    <span class="warning-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Header -->
+                    <div class="ios-header">
+                        <img src="img/chat_avatar.jpg" alt="Chat Avatar"
+                            style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; margin-right: 10px;">
+                        <div class="ios-header-content" style="text-align: left;">
+                            <h4>girls. community</h4>
+                            <span id="chatStatus">48 участников, 24 в сети</span>
+                        </div>
+                    </div>
+
+                    <!-- Messages Area -->
+                    <div class="ios-messages" id="chatContainer">
+                        <!-- Messages triggered by JS -->
+                    </div>
+
+                    <!-- Input Bar -->
+                    <div class="ios-input-bar">
+                        <div style="font-size: 24px; color: #007AFF; cursor: pointer;">＋</div>
+                        <input type="text" class="ios-input" placeholder="iMessage" disabled>
+                        <button class="ios-send-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 4L12 20M12 4L5 11M12 4L19 11" stroke="white" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div style="margin-top: 50px;">
+                    <a href="https://t.me/meowwgirlssz" class="btn btn-primary"
+                        style="padding: 15px 40px; font-size: 18px;">Вступить в реальный чат</a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        injectComponents('chat');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatContainer = document.getElementById('chatContainer');
+
+            // Full Participant List
+            const participants = [
+                { id: 'ikronez', name: 'ikronez', img: 'img/participants/ikronez.png' },
+                { id: 'anora', name: 'anora', img: 'img/participants/anora.png' },
+                { id: 'shamuratov', name: 'shamuratov', img: 'img/participants/shamuratov.png' },
+                { id: 'vetements', name: 'vetements', img: 'img/participants/vetements.png' },
+                { id: 'matvey', name: 'Матвей', img: 'img/participants/matvey.jpg' },
+                { id: 'laysik', name: 'Laysik', img: 'img/participants/laysik.png' },
+                { id: 'tony', name: 'Tony Barelly', img: 'img/participants/tony.png' },
+                { id: 'ikar', name: '𒆜ɨ. ӄ. ǟ. ʀ. 𒆜', img: 'img/participants/ikar.png' },
+                { id: 'ma', name: 'M|A', img: 'img/participants/ma.png' },
+                { id: 'histon', name: 'хистон', img: 'img/participants/histon.jpg' },
+                { id: 'discomfort', name: 'discomfort', img: 'img/participants/discomfort.png' },
+                { id: 's', name: 'S', img: 'img/participants/s.png' },
+                { id: 'imash', name: 'имаш', img: 'img/participants/imash.png' },
+                { id: 'varya', name: 'варя', img: 'img/participants/varya.png' },
+                { id: 'robert', name: 'Роберт Фир', img: 'img/participants/robert.jpg' },
+                { id: 'seldex', name: 'seldex', img: 'img/participants/seldex.png' },
+                { id: 'simpatia', name: 'simpatía ausente', img: 'img/participants/simpatia.png' },
+                { id: '2d', name: '2D', img: 'img/participants/melanmolly.png' },
+                { id: 'evelka', name: 'Evelkka', img: 'img/participants/evelka.png' },
+                { id: 'sonya', name: 'sonechka', img: 'img/participants/sonya.png' },
+                { id: 'yulkk', name: 'yulkk', img: 'img/participants/yulkk.png' },
+                { id: 'hoshiko', name: 'hoshiko', img: 'img/participants/hoshiko.png' },
+                { id: 'ksuukras', name: 'ksuukras', img: 'img/participants/ksuukras.jpg' },
+                { id: 'uainni', name: 'uainni', img: 'img/participants/uainni.png' },
+                { id: 'unlucky', name: 'unlucky', img: 'img/participants/unlucky.png' },
+                { id: 'lina', name: 'lina', img: 'img/participants/lina.png' },
+                { id: 'valeriia', name: 'Valeriia', img: 'img/participants/valeriia.png' },
+                { id: 'nastyusha', name: 'настюша', img: 'img/participants/nastyusha.png' },
+                { id: 'ansty', name: 'ansty', img: 'img/participants/ansty.png' },
+                { id: 'stepashha', name: 'stepashha', img: 'img/participants/stepashha.png' },
+                { id: 'chrwcn', name: 'chrwcn', img: 'img/participants/chrwcn.jpg' },
+                { id: 'dana', name: 'Dana', img: 'img/participants/dana.png' },
+                { id: 'waiting', name: 'waiting', img: 'img/participants/waiting.png' },
+                { id: 'sarra', name: 'sarra', img: 'img/participants/sarra.png' },
+                { id: 'sophie', name: 'sophie', img: 'img/participants/sophie.png' },
+                { id: 'lerochka', name: 'Лерочка', img: 'img/participants/lerochka.png' },
+                { id: 'nagaserena', name: 'NagaSerena', img: 'img/participants/nagaserena.png' },
+                { id: 'ellenachka', name: 'Ellenachka', img: 'img/participants/ellenachka.png' },
+                { id: 'madiii', name: '𝐦𝐚𝐝𝐢𝐢𝐢', img: 'img/participants/madiii.png' },
+                { id: 'minn', name: 'Minni', img: 'img/participants/minn.png' },
+                { id: 'latency', name: 'latency', img: 'img/participants/latency.png' },
+                { id: 'ronin', name: 'ʀᴏɴɪɴ', img: 'img/participants/ronin.png' },
+                { id: 'anastasia', name: 'Анастасия Литвин', img: 'img/participants/anastasia.jpg' },
+                { id: 'mua', name: 'mua', img: 'img/participants/mua.png' },
+                { id: 'marlboro', name: 'marlboro', img: 'img/participants/marlboro.png' },
+                { id: 'hostyan', name: 'хостян', img: 'img/participants/hostyan.png' },
+                { id: 'armen', name: 'Армен', img: 'img/participants/armen.png' },
+                { id: 'velya', name: 'веля', img: 'img/participants/velya.png' },
+                { id: 'spilwy', name: 'spilwy', img: 'img/participants/spilwy.jpg' },
+                { id: 'max_cursed', name: 'макс курсед', img: 'img/participants/max_cursed.png' },
+                { id: 'pivnouy', name: 'pivnouy', img: 'img/participants/pivnouy.png' },
+                { id: 'robert_fir', name: 'Роберт Фир', img: 'img/participants/robert.jpg' }
+            ];
+
+            const getParticipant = (id) => participants.find(p => p.id === id) || participants[0];
+            const getRandomParticipant = (excludeIds = []) => {
+                const available = participants.filter(p => !excludeIds.includes(p.id));
+                return available[Math.floor(Math.random() * available.length)];
+            };
+
+            // Color Palette (Telegram-like distinct colors)
+            const nameColors = [
+                '#e17076', // Red
+                '#7bc862', // Green
+                '#6ec9cb', // Cyan
+                '#65aadd', // Blue
+                '#a695e7', // Purple
+                '#ee7aae', // Pink
+                '#dca23d'  // Orange
+            ];
+
+            // Assign a stable color to each participant
+            participants.forEach((p, index) => {
+                p.color = nameColors[index % nameColors.length];
+            });
+
+            // Expanded General Phrases (Community & Project focused)
+            const generalPhrases = [
+                { name: "ikronez", text: "Апдейты на сайте выглядят пушечно!" },
+                { name: "anora", text: "Дизайн стал просто нереальный, стиль чувствуется." },
+                { name: "spilwy", text: "Счетчик на главной теперь вообще в тему." },
+                { name: "shamuratov", text: "Рад, что вам зашло, стараемся для комьюнити." },
+                { name: "mua", text: "А правила видели? Glassmorphism ван лав ❤️" },
+                { name: "spilwy", text: "Да, правила теперь читать приятно даже." },
+                { name: "ikronez", text: "Кто видел последние фотки в канале? Маникюр просто космос" },
+                { name: "anora", text: "Я видела! Эстетика зашкаливает ✨" },
+                { name: "spilwy", text: "Надо бы еще больше интерактива добавить" },
+                { name: "mua", text: "И так уже сайт как приложение на айфон выглядит" },
+                { name: "shamuratov", text: "Скоро еще рулетку допилим, будет вообще жара" },
+                { name: "ikronez", text: "Ждем! Лучшее ламповое комьюнити" },
+                { name: "spilwy", text: "Всем доброго вечера, девочки и мальчики" },
+                { name: "anora", text: "Приветик, spilwy! Как настрой?" },
+                { name: "spilwy", text: "Настрой боевой, смотрю на новые контакты, красиво сделали" },
+                { name: "max_cursed", text: "Контакты реально по красоте вышли 🥀" },
+                { name: "mua", text: "Кстати, в канале новый пост, бегом смотреть!" },
+                { name: "max_cursed", text: "Пошел смотреть канал, там всегда годнота" },
+                { name: "pivnouy", text: "Здорово всем! Дизайн сайта — моё почтение 🍻" },
+                { name: "robert_fir", text: "Змеиный привет комьюнити 🐍" },
+                { name: "pivnouy", text: "Кто уже в рулетку играл?" },
+                { name: "robert_fir", text: "Я играл, выпало пару прикольных штук." },
+                { name: "general", text: "Сайт стал намного быстрее летать" },
+                { name: "general", text: "Обожаю этот дизайн" },
+                { name: "general", text: "Ребята, вы лучшие!" },
+                { name: "general", text: "Новые админы классные" },
+                { name: "general", text: "Счетчик теперь не мешает, спасибо!" },
+                { name: "general", text: "Минимализм это всегда хорошо" },
+                { name: "general", text: "Стильно, модно, молодежно)" },
+                { name: "general", text: "Кто еще заметил новые тени у кнопок?" },
+                { name: "general", text: "Мягкий свет от ламп в канале это 10/10" },
+                { name: "general", text: "Хочу такую же рулетку себе)" },
+                { name: "general", text: "Комьюнити растет на глазах" },
+                { name: "general", text: "Каждый день новые фишки, кайф" },
+                { name: "general", text: "Админы всегда на связи, респект" },
+                { name: "general", text: "Лучший чатик в тг" },
+                { name: "general", text: "Дизайн котика в шапке топ" },
+                { name: "general", text: "Лягушка мемная конечно)" },
+                { name: "general", text: "Градиенты на кнопках очень приятные" },
+                { name: "general", text: "Стекло на правилах это нечто" },
+                { name: "general", text: "Аноре привет!" },
+                { name: "general", text: "Шамуратов гений дизайна" },
+                { name: "general", text: "Когда стрим по обновлению сайта?" },
+                { name: "general", text: "Сайт как искусство" },
+                { name: "general", text: "Все летает даже со слабого инета" },
+                { name: "general", text: "Версия для мобилок тоже огонь" },
+                { name: "general", text: "Тайминг сообщений в чате как у живых людей" },
+                { name: "general", text: "Приятно тут находиться" },
+                { name: "general", text: "Забыла как дышать от такой красоты" },
+                { name: "general", text: "Лучший подарок это подписка на чат)" },
+                { name: "general", text: "Всем хороших подарков в рулетке!" },
+                { name: "general", text: "Свяжитесь со мной по рекламе, контакты супер" },
+                { name: "general", text: "Дизайн карточек участников вау" },
+                { name: "general", text: "Фоточки в канале нереальные" },
+                { name: "general", text: "Самое эстетичное комьюнити" },
+                { name: "general", text: "Люблю вас всех!" }
+            ];
+
+            // Shuffle function to ensure uniqueness order
+            const shuffleArray = (array) => {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            };
+
+            let shuffledPhrases = shuffleArray([...generalPhrases]);
+
+            const createBubble = (user, text, isRight = false) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = `ios-bubble-wrapper ${isRight ? 'right' : ''}`;
+
+                let avatarHTML = '';
+                if (!isRight) { // Only show avatar for others
+                    avatarHTML = `<img src="${user.img}" class="ios-avatar" alt="${user.name}">`;
+                }
+
+                const content = `
+                    ${avatarHTML}
+                    <div style="display:flex; flex-direction:column; max-width: 100%;">
+                        <span class="ios-sender-name" style="color: ${user.color};">${user.name}</span>
+                        <div class="ios-bubble">
+                            ${text}
+                        </div>
+                    </div>
+                `;
+
+                wrapper.innerHTML = content;
+                chatContainer.appendChild(wrapper);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            };
+
+            // Sequence Engine
+            let step = 0;
+
+            // Initial scripted scenario
+            const runScenario = () => {
+                const ikronez = getParticipant('ikronez');
+                const anora = getParticipant('anora');
+                const shamuratov = getParticipant('shamuratov');
+
+                if (step === 0) {
+                    createBubble(ikronez, "Всем привет! Как вам обновление канала? 🔥", false);
+                    step++;
+                    setTimeout(runScenario, 1500);
+                } else if (step === 1) {
+                    createBubble(anora, "Огонь! Фотки с собором вообще супер получились", false);
+                    step++;
+                    setTimeout(runScenario, 1500);
+                } else if (step === 2) {
+                    createBubble(shamuratov, "Рад, что зашло. Мы долго старались над контентом", false);
+                    step++;
+                    setTimeout(startChatExplosion, 1000);
+                }
+            };
+
+            const startChatExplosion = () => {
+                let count = 0;
+                const maxMessages = 30; // Show 30 unique general messages
+
+                const timer = setInterval(() => {
+                    if (count >= maxMessages || shuffledPhrases.length === 0) {
+                        clearInterval(timer);
+                        return;
+                    }
+
+                    const phrase = shuffledPhrases.pop();
+                    let user;
+
+                    if (phrase.name === 'general') {
+                        const exclude = ['ikronez', 'anora', 'shamuratov', 'spilwy', 'mua'];
+                        user = getRandomParticipant(exclude);
+                    } else {
+                        user = getParticipant(phrase.name);
+                    }
+
+                    createBubble(user, phrase.text, false);
+                    count++;
+                }, 1000);
+            };
+
+            setTimeout(runScenario, 1000);
+        });
+
+        // ========================================
+        // Animation Warning Overlay Logic
+        // ========================================
+
+        const warningOverlay = document.getElementById('chatWarningOverlay');
+        const chatAnimToggle = document.getElementById('chatAnimToggle');
+
+        // Check animation settings and show/hide overlay
+        function checkAnimationSettings() {
+            const savedAnim = localStorage.getItem('site_animations');
+            const isAnimEnabled = savedAnim === null ? true : savedAnim === 'true';
+
+            if (!isAnimEnabled) {
+                // Animations are disabled - show warning
+                warningOverlay.classList.add('active');
+                chatAnimToggle.checked = false;
+            } else {
+                // Animations are enabled - hide warning
+                warningOverlay.classList.remove('active');
+                chatAnimToggle.checked = true;
+            }
+        }
+
+        // Handle toggle change from warning overlay
+        chatAnimToggle.addEventListener('change', (e) => {
+            const enabled = e.target.checked;
+
+            if (enabled) {
+                // Enable animations
+                document.body.classList.remove('no-animations');
+                localStorage.setItem('site_animations', 'true');
+
+                // Hide warning overlay
+                setTimeout(() => {
+                    warningOverlay.classList.remove('active');
+                }, 100);
+
+                // Update main settings toggle if it exists
+                const mainAnimToggle = document.getElementById('animToggle');
+                if (mainAnimToggle) {
+                    mainAnimToggle.checked = true;
+                }
+            } else {
+                // Disable animations
+                document.body.classList.add('no-animations');
+                localStorage.setItem('site_animations', 'false');
+                warningOverlay.classList.add('active');
+
+                // Update main settings toggle if it exists
+                const mainAnimToggle = document.getElementById('animToggle');
+                if (mainAnimToggle) {
+                    mainAnimToggle.checked = false;
+                }
+            }
+        });
+
+        // Check settings on page load
+        checkAnimationSettings();
+
+        // Listen for changes in localStorage
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'site_animations') {
+                checkAnimationSettings();
+            }
+        });
+
+        // Periodic check
+        setInterval(checkAnimationSettings, 500);
+
+
+    </script>
+</body>
+
+</html>

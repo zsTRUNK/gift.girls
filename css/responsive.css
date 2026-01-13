@@ -1,0 +1,571 @@
+/* ========================================
+   RESPONSIVE DESIGN - MOBILE & TABLET
+   ======================================== */
+
+/* ========================================
+   MOBILE SMALL (320px - 480px)
+   ======================================== */
+@media (max-width: 480px) {
+
+    /* Container */
+    .container {
+        padding: 0 15px;
+    }
+
+    /* Typography */
+    .hero-title {
+        font-size: clamp(32px, 10vw, 48px) !important;
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 14px;
+        padding-left: 15px;
+    }
+
+    /* Hero Decorations - Show on small mobile but smaller */
+    /* Hero Decorations - Hide all except Pepe on mobile */
+    .hero-decoration,
+    .hero-lips,
+    .hero-cat,
+    .hero-rose,
+    .hero-doshik {
+        display: none !important;
+    }
+
+    .hero-mascot {
+        display: block !important;
+        width: 100px;
+        /* Pepe visible */
+        opacity: 1;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 12px 24px;
+        font-size: 12px;
+    }
+
+    .hero-btns {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .hero-btns .btn {
+        width: 100%;
+        margin-left: 0 !important;
+    }
+
+    /* Carousel */
+    .slider-container {
+        height: 400px;
+    }
+
+    .card {
+        width: 280px;
+    }
+
+    .user-img-container {
+        width: 100px;
+        height: 100px;
+    }
+
+    .card h3 {
+        font-size: 20px !important;
+    }
+
+    .card-description {
+        font-size: 13px;
+    }
+
+    .slider-arrow {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+
+    .arrow-prev {
+        left: 5px;
+    }
+
+    .arrow-next {
+        right: 5px;
+    }
+
+    .slider-counter {
+        font-size: 12px;
+        padding: 4px 12px;
+    }
+
+    /* Participants Section */
+    .participants-section {
+        padding: 40px 20px !important;
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .participants-section h2 {
+        font-size: 24px !important;
+    }
+
+    /* Toggle Buttons */
+    .user-type-toggle {
+        flex-direction: row;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .toggle-btn {
+        padding: 8px 20px;
+        font-size: 12px;
+    }
+
+    /* Chat Container */
+    .ios-chat-container {
+        max-width: 100%;
+        height: 600px;
+        border-radius: 20px;
+    }
+
+    .ios-header {
+        padding: 15px;
+    }
+
+    .ios-header h4 {
+        font-size: 15px;
+    }
+
+    .ios-header span {
+        font-size: 11px;
+    }
+
+    .ios-bubble {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .ios-avatar {
+        width: 24px;
+        height: 24px;
+    }
+
+    .ios-sender-name {
+        font-size: 12px;
+    }
+
+    /* Channel Container */
+    .ios-channel-wrapper {
+        max-width: 100%;
+        height: 70vh;
+        border-radius: 20px;
+    }
+
+    .ios-channel-header {
+        padding: 10px 15px;
+    }
+
+    .ios-channel-avatar {
+        width: 36px;
+        height: 36px;
+    }
+
+    .ios-channel-info h3 {
+        font-size: 15px;
+    }
+
+    .ios-channel-info span {
+        font-size: 12px;
+    }
+
+    .ios-tg-bubble {
+        padding: 10px;
+    }
+
+    .ios-tg-author {
+        font-size: 13px;
+    }
+
+    .ios-tg-text {
+        font-size: 14px;
+    }
+
+    .ios-tg-meta {
+        font-size: 10px;
+    }
+
+    /* Roulette */
+    .roulette-container {
+        padding: 20px;
+    }
+
+    .roulette-display {
+        height: 300px;
+    }
+
+    .roulette-item {
+        height: 100px;
+    }
+
+    .roulette-avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .roulette-name {
+        font-size: 14px;
+    }
+
+    .roulette-spin-btn {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+
+    .winner-display {
+        padding: 20px;
+    }
+
+    .winner-avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .winner-name {
+        font-size: 20px;
+    }
+
+    /* Settings Modal */
+    .settings-modal {
+        width: 95%;
+        padding: 25px;
+    }
+
+    .settings-header h3 {
+        font-size: 20px;
+    }
+
+    .setting-label {
+        font-size: 14px;
+    }
+
+    /* Contact Card */
+    .contact-glass-card {
+        padding: 30px 20px;
+    }
+
+    .contact-title {
+        font-size: 22px;
+    }
+
+    .tg-admin-avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .tg-admin-name {
+        font-size: 16px;
+    }
+
+    /* Rules */
+    .rule-item {
+        padding: 20px;
+    }
+
+    .rule-header h3 {
+        font-size: 18px;
+    }
+
+    .rule-content {
+        font-size: 14px;
+    }
+}
+
+/* ========================================
+   MOBILE LARGE (481px - 767px)
+   ======================================== */
+@media (min-width: 481px) and (max-width: 767px) {
+
+    /* Container */
+    .container {
+        padding: 0 20px;
+    }
+
+    /* Hero */
+    .hero-title {
+        font-size: clamp(40px, 8vw, 56px) !important;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    /* Hide some decorations, keep others */
+    /* Show all decorations */
+    .hero-rose,
+    .hero-doshik {
+        display: block !important;
+        width: 100px;
+    }
+
+    .hero-mascot,
+    .hero-decoration,
+    .hero-lips,
+    .hero-cat {
+        width: 120px;
+    }
+
+    /* Buttons */
+    .hero-btns {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .hero-btns .btn {
+        width: 100%;
+        margin-left: 0 !important;
+    }
+
+    /* Carousel */
+    .slider-container {
+        height: 450px;
+    }
+
+    .card {
+        width: 320px;
+    }
+
+    .user-img-container {
+        width: 120px;
+        height: 120px;
+    }
+
+    .slider-arrow {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .arrow-prev {
+        left: 10px;
+    }
+
+    .arrow-next {
+        right: 10px;
+    }
+
+    /* Participants Section */
+    .participants-section {
+        padding: 50px 30px !important;
+        margin-top: 30px !important;
+        margin-bottom: 30px !important;
+    }
+
+    /* Chat & Channel */
+    .ios-chat-container,
+    .ios-channel-wrapper {
+        max-width: 100%;
+        border-radius: 30px;
+    }
+
+    .ios-chat-container {
+        height: 650px;
+    }
+
+    .ios-channel-wrapper {
+        height: 75vh;
+    }
+
+    /* Roulette */
+    .roulette-display {
+        height: 320px;
+    }
+
+    .roulette-item {
+        height: 110px;
+    }
+
+    .roulette-avatar {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* Settings Modal */
+    .settings-modal {
+        width: 90%;
+        padding: 30px;
+    }
+}
+
+/* ========================================
+   TABLET (768px - 1024px)
+   ======================================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    /* Container */
+    .container {
+        padding: 0 30px;
+    }
+
+    /* Hero */
+    .hero-title {
+        font-size: clamp(48px, 7vw, 64px) !important;
+    }
+
+    /* Decorations - smaller size */
+    .hero-mascot,
+    .hero-decoration,
+    .hero-lips,
+    .hero-cat {
+        width: 150px;
+    }
+
+    .hero-rose,
+    .hero-doshik {
+        width: 100px;
+    }
+
+    /* Carousel */
+    .slider-container {
+        height: 480px;
+    }
+
+    .card {
+        width: 340px;
+    }
+
+    /* Chat & Channel */
+    .ios-chat-container {
+        max-width: 550px;
+        height: 680px;
+    }
+
+    .ios-channel-wrapper {
+        max-width: 650px;
+        height: 80vh;
+    }
+
+    /* Roulette */
+    .roulette-container {
+        padding: 30px;
+    }
+
+    .roulette-display {
+        height: 340px;
+    }
+
+    /* Settings Modal */
+    .settings-modal {
+        width: 80%;
+        max-width: 500px;
+    }
+}
+
+/* ========================================
+   LANDSCAPE ORIENTATION FIXES
+   ======================================== */
+@media (max-height: 600px) and (orientation: landscape) {
+
+    /* Reduce heights for landscape mode */
+    .hero {
+        min-height: auto;
+        padding: 80px 0 40px;
+    }
+
+    .slider-container {
+        height: 350px;
+    }
+
+    .ios-chat-container {
+        height: 500px;
+    }
+
+    .ios-channel-wrapper {
+        height: 500px;
+    }
+
+    .roulette-display {
+        height: 250px;
+    }
+
+    .roulette-item {
+        height: 80px;
+    }
+
+    .roulette-avatar {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* ========================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ======================================== */
+@media (hover: none) and (pointer: coarse) {
+
+    /* Increase touch targets */
+    .btn {
+        min-height: 44px;
+    }
+
+    .slider-arrow {
+        min-width: 50px;
+        min-height: 50px;
+    }
+
+    .toggle-btn {
+        min-height: 40px;
+    }
+
+    .settings-btn,
+    .menu-toggle {
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    /* Remove hover effects on touch devices */
+    .btn:hover,
+    .card:hover,
+    .slider-arrow:hover {
+        /* Allow transforms if triggered */
+    }
+
+    /* Add active states instead */
+    .btn:active {
+        transform: scale(0.95);
+    }
+
+    .slider-arrow:active {
+        transform: translateY(-50%) scale(0.95);
+    }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+
+    header,
+    footer,
+    .settings-btn,
+    .menu-toggle,
+    .slider-arrow,
+    .hero-mascot,
+    .hero-decoration,
+    .hero-lips,
+    .hero-cat,
+    .hero-rose,
+    .hero-doshik,
+    .btn,
+    .ios-input-bar,
+    .ios-send-btn {
+        display: none !important;
+    }
+
+    body {
+        background: white !important;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+}

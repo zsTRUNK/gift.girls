@@ -1,0 +1,449 @@
+/* ========================================
+   MOBILE-FIRST MINIMALIST DESIGN
+   ======================================== */
+
+/* Hide carousel arrows on mobile */
+@media (max-width: 768px) {
+    .slider-arrow {
+        display: none !important;
+    }
+
+    /* Optimize carousel for mobile */
+    .slider-container {
+        height: auto;
+        min-height: 450px;
+        padding: 20px 0;
+        touch-action: pan-y pinch-zoom;
+    }
+
+    .slider-wrapper {
+        width: 100%;
+        overflow: visible;
+        cursor: grab;
+    }
+
+    .slider-wrapper:active {
+        cursor: grabbing;
+    }
+
+    /* Mobile card styling - minimalist */
+    .card {
+        width: 85vw;
+        max-width: 340px;
+        padding: 25px 20px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    .card.active {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Simplified user image */
+    .user-img-container {
+        width: 110px;
+        height: 110px;
+        margin: 0 auto 15px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Clean typography */
+    .card h3 {
+        font-size: 22px !important;
+        margin-bottom: 8px;
+        font-weight: 700;
+    }
+
+    .card-description {
+        font-size: 14px;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Minimalist toggle */
+    .user-type-toggle {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 3px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 12px;
+        width: fit-content;
+        max-width: 260px;
+    }
+
+    .toggle-btn {
+        padding: 6px 16px;
+        font-size: 11px;
+        font-weight: 600;
+        border-radius: 16px;
+    }
+
+    .toggle-btn.active {
+        background: var(--color-primary);
+        box-shadow: 0 2px 8px rgba(255, 107, 157, 0.3);
+    }
+
+    /* Clean counter */
+    .slider-counter {
+        font-size: 13px;
+        padding: 6px 14px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+    }
+
+    /* Participants section - minimalist */
+    .participants-section {
+        padding: 40px 20px !important;
+        margin: 20px 0 !important;
+        background: rgba(255, 255, 255, 0.02) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 30px !important;
+        backdrop-filter: blur(10px);
+    }
+
+    .participants-section h2 {
+        font-size: 26px !important;
+        margin-bottom: 6px;
+        font-weight: 800;
+    }
+
+    .participants-section p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+    }
+}
+
+/* Extra small mobile optimization */
+@media (max-width: 480px) {
+    .card {
+        width: 90vw;
+        padding: 20px 15px;
+    }
+
+    .user-img-container {
+        width: 100px;
+        height: 100px;
+    }
+
+    .card h3 {
+        font-size: 20px !important;
+    }
+
+    .participants-section h2 {
+        font-size: 24px !important;
+    }
+}
+
+/* ========================================
+   SWIPE GESTURE SUPPORT
+   ======================================== */
+
+@media (max-width: 768px) {
+
+    /* Enable smooth swiping */
+    .slider-wrapper {
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .card {
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+    }
+
+    /* Visual feedback for swipe */
+    .card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card:active {
+        transform: translate(-50%, -50%) scale(0.98);
+    }
+}
+
+/* ========================================
+   MINIMALIST BUTTONS & CONTROLS
+   ======================================== */
+
+@media (max-width: 768px) {
+
+    /* Clean button design */
+    .btn {
+        min-height: 48px;
+        padding: 14px 28px;
+        font-size: 14px;
+        font-weight: 600;
+        border-radius: 24px;
+        letter-spacing: 0.5px;
+    }
+
+    .btn-primary {
+        background: rgba(255, 107, 157, 0.25);
+        border: 1px solid rgba(255, 107, 157, 0.4);
+        box-shadow: 0 4px 16px rgba(255, 107, 157, 0.2);
+    }
+
+    .btn-primary:active {
+        transform: scale(0.97);
+        box-shadow: 0 2px 8px rgba(255, 107, 157, 0.3);
+    }
+
+    .btn-outline {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-outline:active {
+        background: rgba(255, 255, 255, 0.15);
+        transform: scale(0.97);
+    }
+
+    /* Hero buttons - 2 in row, 1 below - Ultra Compact */
+    .hero-btns {
+        display: grid !important;
+        grid-template-columns: auto auto !important;
+        gap: 8px !important;
+        justify-content: center !important;
+        margin: 20px auto 0 !important;
+        width: 100%;
+    }
+
+    .hero-btns .btn {
+        width: auto !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding: 8px 16px !important;
+        font-size: 11px !important;
+        height: auto !important;
+        line-height: 1 !important;
+        white-space: nowrap !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
+    .hero-btns .btn-compliment {
+        grid-column: span 2 !important;
+        justify-self: center !important;
+        width: fit-content !important;
+    }
+}
+
+/* ========================================
+   CLEAN NAVIGATION
+   ======================================== */
+
+@media (max-width: 768px) {
+
+    /* Minimalist header */
+    header {
+        background: none;
+        backdrop-filter: none;
+        border-bottom: none;
+    }
+
+    .logo {
+        font-size: 22px;
+        font-weight: 800;
+    }
+
+    /* Clean mobile menu */
+    .nav-links {
+        background: rgba(15, 15, 26, 0.98);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 14px 0;
+        font-size: 15px;
+        font-weight: 500;
+        border-radius: 10px;
+        margin-bottom: 6px;
+        text-align: center;
+    }
+
+    .nav-links a.active {
+        background: rgba(255, 107, 157, 0.15);
+        border: 1px solid rgba(255, 107, 157, 0.3);
+    }
+
+    /* Clean controls */
+    .menu-toggle,
+    .settings-btn {
+        width: 42px;
+        height: 42px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+    }
+
+    .menu-toggle:active,
+    .settings-btn:active {
+        background: rgba(255, 255, 255, 0.12);
+        transform: scale(0.95);
+    }
+}
+
+/* ========================================
+   MINIMALIST HERO SECTION
+   ======================================== */
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 85vh;
+        padding: 100px 0 60px;
+    }
+
+    .hero-title {
+        font-size: clamp(36px, 10vw, 52px) !important;
+        line-height: 1.15;
+        margin-bottom: 16px;
+        letter-spacing: -1px;
+    }
+
+    .hero-subtitle {
+        font-size: 15px;
+        line-height: 1.6;
+        padding-left: 16px;
+        border-left: 2px solid var(--color-primary);
+        margin-bottom: 32px;
+        max-width: 90%;
+    }
+
+}
+
+/* Hide extra decorations ONLY on small mobile */
+@media (max-width: 480px) {
+
+    .hero-decoration,
+    .hero-lips,
+    .hero-cat,
+    .hero-rose,
+    .hero-doshik {
+        display: none !important;
+    }
+}
+
+/* ========================================
+   CLEAN MODALS
+   ======================================== */
+
+@media (max-width: 768px) {
+    .settings-modal {
+        width: 92%;
+        padding: 30px 20px;
+        border-radius: 24px;
+        background: rgba(30, 30, 46, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .settings-header h3 {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    .setting-item {
+        padding: 14px 16px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+    }
+
+    .setting-label {
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .close-btn {
+        width: 38px;
+        height: 38px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+    }
+}
+
+/* ========================================
+   DARK THEME MOBILE ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 768px) {
+    body[data-theme="dark"] .card {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    body[data-theme="dark"] .card.active {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    body[data-theme="dark"] .participants-section {
+        background: rgba(255, 255, 255, 0.02) !important;
+        border-color: rgba(255, 255, 255, 0.05) !important;
+    }
+}
+
+/* ========================================
+   LIGHT THEME MOBILE ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 768px) {
+    body[data-theme="light"] .card {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    body[data-theme="light"] .card.active {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    body[data-theme="light"] .participants-section {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+}
+
+/* ========================================
+   QUOTE STRETCHING
+   ======================================== */
+
+@media (max-width: 768px) {
+
+    /* Quote section - elegant stretch */
+    .quote-container {
+        padding: 40px 20px !important;
+        margin-top: 40px !important;
+        border-radius: 30px !important;
+    }
+
+    .hero-quote {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .hero-quote span {
+        display: block !important;
+        width: 100% !important;
+    }
+
+    .quote-line-2 {
+        text-align: center !important;
+        letter-spacing: 3px !important;
+        margin-top: 5px !important;
+        display: block !important;
+    }
+}
